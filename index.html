@@ -11,7 +11,36 @@
         <div class="content">   
             <header class="header">
                 <h1 class="headeritem">Library App</h1>
-                <p class="headeritem">This is your library. You can add the books you've read and keep track of the ones you   are   currently reading.</p>
+                <p class="headeritem">This is your library. You can add the books you've read and keep track of the ones you are currently reading.</p>
+                <button id="open-form">Add a book</button>
+                <div id="form-container">
+                    <button id="close-form">X</button>    
+                    <form class="form">
+                        <div>
+                            <div>
+                                <input type="text" name="input-title" id="input-title" placeholder="Title">
+                            </div>
+                            <div>
+                                <input type="text" name="input-author" id="input-author" placeholder="Author">
+                            </div>                            
+                            <div>
+                                <input type="text" name="input-pages" id="input-pages" placeholder="Pages">
+                            </div>
+                            <div>
+                                Read?
+                                <div>
+                                    <label for="input-read-yes">Yes</label>
+                                    <input type="radio" name="input-read" id="input-read-yes">
+                                </div>
+                                <div>
+                                    <label for="input-read-no">No</label>
+                                    <input type="radio" name="input-read" id="input-read-no">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" id=new-book-button>Add a book</button>
+                    </form>
+                </div>
             </header>
             <div class="container">
                     <div class="book">
@@ -30,8 +59,8 @@
                 <a class="footeritems" href="https://andrestec.com/">
                 <img class="logo" src="images/bitmap.png" alt="Andres Tec logo"></a>
             </footer>
-            <script src="script.js"></script>
         </div>
-    </div>    
+    </div>
+<script src="script.js"></script>   
 </body>
 </html>

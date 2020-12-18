@@ -28,6 +28,7 @@ html {
   flex-direction: column;
   align-items: center;
   padding: 5vh;
+  margin-bottom: 8vh;
 }
 .headeritem {
   margin: 10px;
@@ -36,18 +37,20 @@ html {
 
 .container {
   display: flex;
-  height: 80vh;
-  padding-top: 10vh;
   flex-wrap: wrap;
   justify-content: center;
+  height: 72vh;
+  padding-top: 10vh;
 }
 .book {
-  height: 30vh;
-  width: 20vw;
+  min-height: 15vh;
+  max-height: 30vh;
+  min-width: 15vw;
+  max-width: 45vw;
   box-shadow: white 0px 2px 5px;
   background-color: var(--green);
-  flex: 0 1 30vh;
-  margin: 5px;
+  margin: 20px;
+  padding: 20px;
 }
 .footer {
   position: absolute;

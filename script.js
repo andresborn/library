@@ -33,6 +33,53 @@ closeForm.addEventListener('click', () => {
     formContainer.setAttribute('style', 'display: none;');
 })
 
-function takeUserInput() {
+function addBookToLibrary() {
 
 }
+
+const booksContainer = document.querySelector('.books-container');
+
+function loopAndDisplay() {
+    //for each object in library
+    myLibrary.forEach(book => {
+        const bookDiv = document.createElement('div');
+        const parTitle = document.createElement('p');
+        const parAuthor = document.createElement('p');
+        const parPages = document.createElement('p');
+        const parRead = document.createElement('p');
+        const bookButtons = document.createElement('div');
+        const readButton = document.createElement('button');
+        const removeButton = document.createElement('button');
+        
+        bookDiv.setAttribute('class', 'book');
+        parTitle.setAttribute('class', 'title');
+        parAuthor.setAttribute('class', 'author');
+        parPages.setAttribute('class', 'pages');
+        parRead.setAttribute('class', 'read');
+        bookButtons.setAttribute('class', 'book-buttons');
+        readButton.setAttribute('id', 'change-read');
+        removeButton.setAttribute('id', 'remove-book');
+
+        parTitle.textContent = `${book.title}`;
+        parAuthor.textContent = `${book.author}`;
+        parPages.textContent = `${book.pages}`;
+        parRead.textContent = `${book.read}`;
+        readButton.textContent = "Read";
+        removeButton.textContent = "Remove";
+
+        bookDiv.appendChild(parTitle);
+        bookDiv.appendChild(parAuthor);
+        bookDiv.appendChild(parPages);
+        bookDiv.appendChild(parRead);
+
+        bookButtons.appendChild(readButton);
+        bookButtons.appendChild(removeButton);
+
+        bookDiv.appendChild(bookButtons);
+
+        booksContainer.appendChild(bookDiv);
+        return
+    });
+}
+
+console.log(loopAndDisplay());

@@ -20,66 +20,61 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 };
 
-// DOM methods
 const formContainer = document.querySelector('#form-container');
+
+const form = document.querySelector('.form');
+const booksContainer = document.querySelector('.books-container');
+
+function addBookToLibrary(e) {
+    e.preventDefault(); //submiting form won't refresh the page
+    const title = (this.querySelector('[id=input-title]')).value;
+    const author = (this.querySelector('[id=input-author]')).value;
+    const pages = (this.querySelector('[id=input-pages]')).value;
+
+    const book = {
+        title,
+        author,
+        pages,
+        read: false,
+    }
+
+    myLibrary.push(book);
+    this.reset();
+    loopAndDisplay(myLibrary, booksContainer)
+}
+
+function loopAndDisplay(books = [], bookList) {
+    bookList.innerHTML = books.map((book, i) => {
+        return `
+        <div class="book">
+        <p class="title">${book.title}</p>
+        <p class="author">${book.author}</p>
+        <p class="pages">${book.pages}</p>
+        <input type="checkbox" data-index="${i}" id="item${i}">
+        <label for="item${i}">Read ${book.read}</label>
+            <div class="book-buttons">
+                <button id="remove-book">Remove</button>
+            </div>
+        </div>    
+        `
+    }).join('');
+}
 
 // Open/close form
 const openForm = document.querySelector('#open-form');
 openForm.addEventListener('click', () => {
     formContainer.setAttribute('style', 'display: flex;');
+    
+    const inputDiv = document.querySelector('#input-checkbox');
+    inputDiv.innerHTML = 
+    `<input type="checkbox" id="input-read-yes" name="input-read-yes" value="yes">
+    <label for="input-read-yes">Read?</label>`;
 })
 const closeForm = document.querySelector('#close-form');
 closeForm.addEventListener('click', () => {
     formContainer.setAttribute('style', 'display: none;');
 })
 
-function addBookToLibrary() {
+form.addEventListener('submit', addBookToLibrary);
 
-}
-
-const booksContainer = document.querySelector('.books-container');
-
-function loopAndDisplay() {
-    //for each object in library
-    myLibrary.forEach(book => {
-        const bookDiv = document.createElement('div');
-        const parTitle = document.createElement('p');
-        const parAuthor = document.createElement('p');
-        const parPages = document.createElement('p');
-        const parRead = document.createElement('p');
-        const bookButtons = document.createElement('div');
-        const readButton = document.createElement('button');
-        const removeButton = document.createElement('button');
-        
-        bookDiv.setAttribute('class', 'book');
-        parTitle.setAttribute('class', 'title');
-        parAuthor.setAttribute('class', 'author');
-        parPages.setAttribute('class', 'pages');
-        parRead.setAttribute('class', 'read');
-        bookButtons.setAttribute('class', 'book-buttons');
-        readButton.setAttribute('id', 'change-read');
-        removeButton.setAttribute('id', 'remove-book');
-
-        parTitle.textContent = `${book.title}`;
-        parAuthor.textContent = `${book.author}`;
-        parPages.textContent = `${book.pages}`;
-        parRead.textContent = `${book.read}`;
-        readButton.textContent = "Read";
-        removeButton.textContent = "Remove";
-
-        bookDiv.appendChild(parTitle);
-        bookDiv.appendChild(parAuthor);
-        bookDiv.appendChild(parPages);
-        bookDiv.appendChild(parRead);
-
-        bookButtons.appendChild(readButton);
-        bookButtons.appendChild(removeButton);
-
-        bookDiv.appendChild(bookButtons);
-
-        booksContainer.appendChild(bookDiv);
-        return
-    });
-}
-
-console.log(loopAndDisplay());
+console.log(loopAndDisplay(myLibrary, booksContainer));

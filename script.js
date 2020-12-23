@@ -21,12 +21,13 @@ function addBookToLibrary(e) {
     const title = (this.querySelector('[id=input-title]')).value;
     const author = (this.querySelector('[id=input-author]')).value;
     const pages = (this.querySelector('[id=input-pages]')).value;
+    const read = (this.querySelector('[id=input-read-yes]')).checked;
 
     const book = {
         title,
         author,
         pages,
-        read: false,
+        read,
     }
 
     myLibrary.push(book);
@@ -71,7 +72,9 @@ function removeButton(e) {
 }
 
 function testing(e) {
-    console.log(e.target);
+    if (!e.target.matches('#input-read-yes')) return;
+    const checkbox = e.target;
+    console.log(checkbox);
 }
 
 // Open/close form
@@ -82,7 +85,6 @@ openForm.addEventListener('click', () => {
     const inputDiv = document.querySelector('#input-checkbox');
     inputDiv.innerHTML = 
     `<input type="checkbox" id="input-read-yes" name="input-read-yes" value="yes">
-    <input type="hidden" id="input-read-yes" name="input-read-yes" value="yes">
     <label for="input-read-yes">Read?</label>`;
 })
 const closeForm = document.querySelector('#close-form');

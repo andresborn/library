@@ -1,13 +1,4 @@
-// Declare book objects two ways. Dummy tests
-let theLordOfTheRings = {
-    title : "The Lord of the Rings",
-    author : "J.R.R. Tolkien",
-    pages : "1000",
-    read : false,
-};
-let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', true);
-
-let myLibrary = [theHobbit, theLordOfTheRings];
+let myLibrary = JSON.parse(localStorage.getItem('books')) || [];
 
 // Book constructor
 function Book(title, author, pages, read) {
@@ -40,6 +31,7 @@ function addBookToLibrary(e) {
 
     myLibrary.push(book);
     this.reset();
+    localStorage.setItem('books', JSON.stringify(myLibrary));
     loopAndDisplay(myLibrary, booksContainer)
 }
 
@@ -50,14 +42,36 @@ function loopAndDisplay(books = [], bookList) {
         <p class="title">${book.title}</p>
         <p class="author">${book.author}</p>
         <p class="pages">${book.pages}</p>
-        <input type="checkbox" data-index="${i}" id="item${i}">
+        <input type="checkbox" data-index="${i}" id="item${i}" ${book.read ? 'checked' : ''}>
         <label for="item${i}">Read ${book.read}</label>
             <div class="book-buttons">
-                <button id="remove-book">Remove</button>
+                <button id="remove-book" data-index="${i}">Remove</button>
             </div>
         </div>    
         `
     }).join('');
+}
+
+function toggleRead(e) {
+    if (!e.target.matches('input')) return; //skip everything except input
+    const item = e.target; // select checkbox
+    const index = item.dataset.index; // set checkbox index 
+    myLibrary[index].read = !myLibrary[index].read; // change read property to opposite
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+    loopAndDisplay(myLibrary, booksContainer);
+}
+
+function removeButton(e) {
+    if (!e.target.matches('button')) return; //skip except if button
+    const button = e.target;
+    const index = button.dataset.index;
+    myLibrary.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+    loopAndDisplay(myLibrary, booksContainer);
+}
+
+function testing(e) {
+    console.log(e.target);
 }
 
 // Open/close form
@@ -68,6 +82,7 @@ openForm.addEventListener('click', () => {
     const inputDiv = document.querySelector('#input-checkbox');
     inputDiv.innerHTML = 
     `<input type="checkbox" id="input-read-yes" name="input-read-yes" value="yes">
+    <input type="hidden" id="input-read-yes" name="input-read-yes" value="yes">
     <label for="input-read-yes">Read?</label>`;
 })
 const closeForm = document.querySelector('#close-form');
@@ -76,5 +91,7 @@ closeForm.addEventListener('click', () => {
 })
 
 form.addEventListener('submit', addBookToLibrary);
-
-console.log(loopAndDisplay(myLibrary, booksContainer));
+formContainer.addEventListener('click', testing);
+booksContainer.addEventListener('click', toggleRead);
+booksContainer.addEventListener('click', removeButton);
+loopAndDisplay(myLibrary, booksContainer);

@@ -23,12 +23,7 @@ function addBookToLibrary(e) {
     const pages = (this.querySelector('[id=input-pages]')).value;
     const read = (this.querySelector('[id=input-read-yes]')).checked;
 
-    const book = {
-        title,
-        author,
-        pages,
-        read,
-    }
+    const book = new Book(title, author, pages, read);
 
     myLibrary.push(book);
     this.reset();
@@ -44,7 +39,7 @@ function loopAndDisplay(books = [], bookList) {
         <p class="author">${book.author}</p>
         <p class="pages">${book.pages}</p>
         <input type="checkbox" data-index="${i}" id="item${i}" ${book.read ? 'checked' : ''}>
-        <label for="item${i}">Read ${book.read}</label>
+        <label for="item${i}">Read ${book.read ? 'Yes' : 'No'}</label>
             <div class="book-buttons">
                 <button id="remove-book" data-index="${i}">Remove</button>
             </div>

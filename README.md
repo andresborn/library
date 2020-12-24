@@ -11,3 +11,5 @@ This lesson was oriented on Objects and Constructors. I learned how objects work
 - How to receive information inputs
 - More efficient ways to do Dom manipulation using `innerHTML`
 - Event delegation for manipulating dynamically generated objects
+
+Special mention to WesBos's JS30 localStorage lesson. This video cleared many doubts.

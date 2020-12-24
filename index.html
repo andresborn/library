@@ -14,11 +14,11 @@
                 <p class="headeritem">This is your library. You can add the books you've read and keep track of the ones you are currently reading.</p>
                 <button id="open-form">Add a book</button>
                 <div id="form-container">
-                    <button id="close-form">X</button>    
+                    <button id="close-form">X</button>
                     <form class="form">
                                 <input type="text" name="input-title" id="input-title" placeholder="Title" required>
-                                <input type="text" name="input-author" id="input-author" placeholder="Author">
-                                <input type="text" name="input-pages" id="input-pages" placeholder="Pages">
+                                <input type="text" name="input-author" id="input-author" placeholder="Author" required>
+                                <input type="number" min="0" name="input-pages" id="input-pages" placeholder="Pages" required>
                                 <div id="input-checkbox">
                                     <input type="checkbox" id="input-read-yes" name="input-read-yes" value="yes">
                                     <label for="input-read-yes">Read?</label>

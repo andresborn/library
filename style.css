@@ -55,8 +55,8 @@ html {
 #close-form {
   position: fixed;
   background-color: white;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   top: 30px;
   right: 30px;
   color: black;

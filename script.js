@@ -1,15 +1,19 @@
 let myLibrary = JSON.parse(localStorage.getItem('books')) || [];
 
 // Book constructor
-function Book(title, author, pages, read) {
+class Book {
+    
+    constructor(title, author, pages, read){
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    }
 }
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
-};
 
 // Functionality
 const formContainer = document.querySelector('#form-container');

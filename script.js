@@ -2,15 +2,15 @@ let myLibrary = JSON.parse(localStorage.getItem('books')) || [];
 
 // Book constructor
 class Book {
-    
-    constructor(title, author, pages, read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
     }
 
-    info() {
+    get info() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
     }
 }

@@ -13,3 +13,5 @@ This lesson was oriented on Objects and Constructors. I learned how objects work
 - Event delegation for manipulating dynamically generated objects
 
 Special mention to WesBos's JS30 localStorage lesson. This video cleared many doubts.
+
+You can see it live at: https://andresborn.github.io/library/
